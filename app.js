@@ -6,16 +6,29 @@ var port = process.env.PORT || 3000,
 
 var express = require('express');
 var app = express();
+var router = express.Router();
 
 app.set('title', 'imgawsome');
 
-app.get('/', function(req, res) {
+/**
+ * GET /
+ * return the contents of index.html
+ * end processing
+ */
+router.get('/', function(req, res, next) {
     res.status(200).send(html);
 });
 
-app.post('/', function(req, res) {
+/**
+ * POST /
+ * do nothing
+ */
+router.post('/', function(req, res, next) {
     //do stuff that i've lost, so lets learn how to version control
+    next();
 });
+
+app.use(router);
 
 // Listen on port 3000, IP defaults to 127.0.0.1
 app.listen(port, ip);
