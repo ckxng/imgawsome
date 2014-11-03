@@ -45,7 +45,8 @@ router.post('/', function(req, res, next) {
 
 app.use(router);
 
-// Listen on port 3000, IP defaults to 127.0.0.1
+// listen on the IP and PORT specified by the environment.
+// defaults to any interface, tcp port 3000
 app.listen(port, ip);
 
 // Put a friendly message on the terminal
