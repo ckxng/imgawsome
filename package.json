@@ -1,0 +1,25 @@
+{
+  "name": "@ckxng/imgawsome",
+  "version": "0.0.1",
+  "description": "AWS-backed image upload service",
+  "homepage": "http://ckxng.github.io/imgawsome",
+  "bugs": {
+    "url": "https://github.com/ckxng/imgawsome/issues"
+  },
+  "license": "BSD-2-Clause",
+  "author": "Cameron King <cking@ckxng.com> (http://www.ckxng.com)",
+  "contributors": [
+    "Ian Campbell <miniatureian@gmail.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ckxng/imgawsome.git"
+  },
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  }
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {}
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>imgawsome</title>
+    <style>
+      body {
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+        font-size:14px;
+        -moz-transition-property: text-shadow;
+        -moz-transition-duration: 4s;
+        -webkit-transition-property: text-shadow;
+        -webkit-transition-duration: 4s;
+        text-shadow: none;
+      }
+      body.blurry {
+        -moz-transition-property: text-shadow;
+        -moz-transition-duration: 4s;
+        -webkit-transition-property: text-shadow;
+        -webkit-transition-duration: 4s;
+        text-shadow: #fff 0px 0px 25px;
+      }
+      a {
+        color: #55aaff;
+      }
+      .textColumn, .linksColumn {
+        padding: 2em;
+      }
+      .textColumn {
+        position: absolute;
+        top: 0px;
+        right: 50%;
+        bottom: 0px;
+        left: 0px;
+
+        text-align: right;
+        padding-top: 11em;
+        background-color: #73A53E;
+
+      }
+      .textColumn p {
+        width: 75%;
+        float:right;
+      }
+      .linksColumn {
+        position: absolute;
+        top:0px;
+        right: 0px;
+        bottom: 0px;
+        left: 50%;
+
+        background-color: #33342D;
+      }
+
+      h1 {
+        color: #33342D;
+        font-size: 500%;
+        font-weight: normal;
+        margin-bottom: 0em;
+      }
+      h2 {
+        font-size: 200%;
+        font-weight: normal;
+        margin-bottom: 0em;
+      }
+      ul {
+        padding-left: 1em;
+        margin: 0px;
+      }
+      li {
+        margin: 1em 0em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="textColumn">
+      <h1>Congratulations</h1>
+      <p>The sample application is now running.</p>
+    </div>
+    <div class="linksColumn">
+      <h2>Coming soon</h2>
+      <ul>
+        <li>User login</a></li>
+        <li>Image upload</a></li>
+        <li>Image deletion</li>
+        <li>Specify custom URL</li>
+        <li>Image hit tracking</li>
+        <li>User creation</li>
+        <li>User deletion</li>
+        <li>User modification</li>
+      </ul>
+      <h2>Links</h2>
+      <ul>
+        <li><a href="http://ckxng.github.io/imgawsome">Homepage</a></li>
+        <li><a href="https://github.com/ckxng/imgawsome.git">Repository</a></li>
+        <li><a href="https://github.com/ckxng/imgawsome/issues">Issue Tracker</a></li>
+      </ul>
+    </div>
+  </body>
+</html>
