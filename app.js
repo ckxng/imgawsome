@@ -11,6 +11,13 @@ var router = express.Router();
 app.set('title', 'imgawsome');
 
 /**
+ * GET /static
+ * serve static files (should eventually move/mirror this to S3)
+ * end processing
+ */
+app.use("/static", express.static(__dirname + "/static"));
+
+/**
  * GET /
  * return the contents of index.html
  * end processing
