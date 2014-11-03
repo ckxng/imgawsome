@@ -31,6 +31,17 @@ app.engine('.html', exphbs({
 app.set('view engine', '.html');
 
 /**
+ * PARAM :id
+ * match first char a-z, A-Z, remaining chars a-z, A-Z, -, 0-9
+ */
+router.param('id', function(req, res, next, id) {
+    if(id.match(/^[a-zA-Z][a-zA-Z\-0-9]*$/)) {
+        req.params.id = id;
+    }
+    next();
+});
+
+/**
  * GET /
  * render index page
  * end processing
@@ -46,6 +57,10 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
     //do stuff that i've lost, so lets learn how to version control
     next();
+});
+
+router.get('/page/:id', function(req, res, next) {
+    res.render(req.params.id);
 });
 
 app.use(router);
