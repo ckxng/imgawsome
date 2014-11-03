@@ -20,6 +20,8 @@
     "start": "node app.js"
   },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "express": "4.10.x"
+  },
   "devDependencies": {}
 }
