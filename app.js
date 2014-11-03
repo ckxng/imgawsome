@@ -9,8 +9,6 @@ var router = express.Router();
 var morgan = require('morgan');
 var exphbs = require('express-handlebars');
 
-app.set('title', 'imgawsome');
-
 /**
  * GET /static
  * serve static files (should eventually move/mirror this to S3)
