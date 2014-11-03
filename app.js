@@ -43,11 +43,11 @@ router.param('id', function(req, res, next, id) {
 
 /**
  * GET /
- * render index page
+ * redirect to index page
  * end processing
  */
 router.get('/', function(req, res, next) {
-    res.render("index");
+    res.redirect("/page/index");
 });
 
 /**
