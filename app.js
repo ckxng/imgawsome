@@ -10,7 +10,7 @@ var app = express();
 app.set('title', 'imgawsome');
 
 app.get('/', function(req, res) {
-    res.send(html);
+    res.status(200).send(html);
 });
 
 app.post('/', function(req, res) {
