@@ -7,6 +7,7 @@ var express = require('express');
 var app = express();
 var router = express.Router();
 var morgan = require('morgan');
+var exphbs = require('express-handlebars');
 
 app.set('title', 'imgawsome');
 
@@ -23,13 +24,21 @@ app.use("/static", express.static(__dirname + "/static"));
  */
 app.use(morgan('combined'));
 
+// configure the default view engine to use handlebars
+// "main.html" is the default layout
+app.engine('.html', exphbs({
+    defaultLayout: 'main',
+    extname: '.html'
+}));
+app.set('view engine', '.html');
+
 /**
  * GET /
  * redirect to /static/index.html
  * end processing
  */
 router.get('/', function(req, res, next) {
-    res.redirect("/static/index.html");
+    res.render("index");
 });
 
 /**
