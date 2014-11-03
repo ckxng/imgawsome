@@ -1,8 +1,7 @@
-var port = process.env.PORT || 3000,
-    ip = process.env.IP || "0.0.0.0",
-    http = require("http"),
-    fs = require("fs"),
-    html = fs.readFileSync("index.html");
+var port = process.env.PORT || 3000;
+var ip = process.env.IP || "0.0.0.0";
+var http = require("http");
+var fs = require("fs");
 
 var express = require('express');
 var app = express();
@@ -26,12 +25,11 @@ app.use(morgan('combined'));
 
 /**
  * GET /
- * return the contents of index.html
+ * redirect to /static/index.html
  * end processing
  */
 router.get('/', function(req, res, next) {
-    res.set("Content-type", "text/html");
-    res.status(200).send(html);
+    res.redirect("/static/index.html");
 });
 
 /**
