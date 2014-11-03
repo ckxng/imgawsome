@@ -32,7 +32,7 @@ app.set('view engine', '.html');
 
 /**
  * GET /
- * redirect to /static/index.html
+ * render index page
  * end processing
  */
 router.get('/', function(req, res, next) {
