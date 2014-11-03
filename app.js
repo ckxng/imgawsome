@@ -7,6 +7,7 @@ var port = process.env.PORT || 3000,
 var express = require('express');
 var app = express();
 var router = express.Router();
+var morgan = require('morgan');
 
 app.set('title', 'imgawsome');
 
@@ -16,6 +17,12 @@ app.set('title', 'imgawsome');
  * end processing
  */
 app.use("/static", express.static(__dirname + "/static"));
+
+/**
+ * MIDDLEWARE logger
+ * log all the middle ware BELOW this point (not statics)
+ */
+app.use(morgan('combined'));
 
 /**
  * GET /
