@@ -1,4 +1,5 @@
 var port = process.env.PORT || 3000,
+    ip = process.env.IP || "0.0.0.0",
     http = require("http"),
     fs = require("fs"),
     html = fs.readFileSync("index.html");
@@ -15,7 +16,7 @@ app.post('/', function(req, res){
 });
 
 // Listen on port 3000, IP defaults to 127.0.0.1
-app.listen(3000);
+app.listen(port, ip);
 
 // Put a friendly message on the terminal
-console.log("Server running at http://127.0.0.1:" + port + "/");
+console.log("Server running at http://" + ip + ":" + port + "/");
