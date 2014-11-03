@@ -29,3 +29,6 @@ node_modules
 
 #c9 IDE
 .c9
+
+#aws elastic beanstalk deploy tools
+.elasticbeanstalk/
