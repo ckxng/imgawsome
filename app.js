@@ -16,6 +16,7 @@ app.set('title', 'imgawsome');
  * end processing
  */
 router.get('/', function(req, res, next) {
+    res.set("Content-type", "text/html");
     res.status(200).send(html);
 });
 
