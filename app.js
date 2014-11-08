@@ -3,6 +3,7 @@ var ip = process.env.IP || "0.0.0.0";
 var http = require("http");
 var fs = require("fs");
 var aws = require('aws-sdk');
+var config = require('./config/config.js');
 
 var express = require('express');
 var app = express();

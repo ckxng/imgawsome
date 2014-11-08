@@ -32,3 +32,6 @@ build/Release
 
 #aws elastic beanstalk deploy tools
 .elasticbeanstalk/
+
+#local config
+config/config.js
