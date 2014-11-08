@@ -1,5 +1,3 @@
-var port = process.env.PORT || 3000;
-var ip = process.env.IP || "0.0.0.0";
 var http = require("http");
 var fs = require("fs");
 var aws = require('aws-sdk');
@@ -69,7 +67,7 @@ app.use(router);
 
 // listen on the IP and PORT specified by the environment.
 // defaults to any interface, tcp port 3000
-app.listen(port, ip);
+app.listen(config.port, config.ip);
 
 // Put a friendly message on the terminal
-console.log("Server running at http://" + ip + ":" + port + "/");
+console.log("Server running at http://" + config.ip + ":" + config.port + "/");
