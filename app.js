@@ -2,6 +2,7 @@ var port = process.env.PORT || 3000;
 var ip = process.env.IP || "0.0.0.0";
 var http = require("http");
 var fs = require("fs");
+var aws = require('aws-sdk');
 
 var express = require('express');
 var app = express();
