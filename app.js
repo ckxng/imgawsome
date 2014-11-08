@@ -59,6 +59,11 @@ router.post('/', function(req, res, next) {
     next();
 });
 
+/**
+ * GET /page/:id
+ * Get a templated page indicated by :id
+ * end processing
+ */
 router.get('/page/:id', function(req, res, next) {
     res.render(req.params.id);
 });
