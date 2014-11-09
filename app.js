@@ -1,6 +1,7 @@
 var http = require("http");
 var fs = require("fs");
 var aws = require('aws-sdk');
+var s3 = aws.S3();
 var config = require('./config/config.js');
 
 var express = require('express');
@@ -66,6 +67,20 @@ router.post('/', function(req, res, next) {
  */
 router.get('/page/:id', function(req, res, next) {
     res.render(req.params.id);
+});
+
+/**
+ * GET /magic/puturl
+ * Get a presigned URL that's valid for uploading ONE file within the next
+ * 15 minutes.  Returned as JSON, no formatting.
+ * {
+ *   err: undefined || Error(), // set to Error object on failure
+ *   url: "URL" // set to presigned URL on sucess, undefined on failure
+ * }
+ * end processing
+ */
+router.get('/magic/puturl', function(req, res, next) {
+    // unimpleimented
 });
 
 app.use(router);
