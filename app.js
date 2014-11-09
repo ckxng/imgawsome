@@ -100,10 +100,10 @@ router.get('/magic/puturl', function(req, res, next) {
     };
     s3.getSignedUrl('putObject', params, function(err, url) {
         res.set('Content-type', 'application/json');
-        res.send(JSON.stringify({
+        res.json({
             'err': err,
             'url': url
-        }));
+        });
     });
 });
 
