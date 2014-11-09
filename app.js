@@ -54,7 +54,7 @@ router.get('/', function(req, res, next) {
  * do nothing
  */
 router.post('/', function(req, res, next) {
-    //do stuff that i've lost, so lets learn how to version control
+    //put information on the server. (use put for editing existing)
     next();
 });
 
@@ -97,8 +97,7 @@ router.get('/magic/puturl', function(req, res, next) {
         'Key': generateKey(config.s3_prefix, config.key_length)
     };
     s3.getSignedUrl('putObject', params, function(err, url) {
-        res.set('Content-type', 'application/json');
-        res.json({
+        res.jsonp({
             'err': err,
             'url': url
         });
