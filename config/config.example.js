@@ -11,3 +11,5 @@ module.exports.ip = process.env.IP || "127.0.0.1";
 module.exports.aws_region = 'us-west-2';
 module.exports.s3_bucket = 'mybucket';
 module.exports.s3_prefix = 'uploads/';
+
+module.exports.key_length = 8;

@@ -80,7 +80,31 @@ router.get('/page/:id', function(req, res, next) {
  * end processing
  */
 router.get('/magic/puturl', function(req, res, next) {
-    // unimpleimented
+    var generateKey = function(prefix, length) {
+        var key = "";
+        var pool = "abcdefghijkmnopqrstuvwxyz";
+        if(length--) {
+            key += pool.charAt(Math.floor(Math.random()*pool.length));
+        }
+        
+        pool = "abcdefghijkmnopqrstuvwxyz023456789";
+        while(length--) {
+            key += pool.charAt(Math.floor(Math.random() * pool.length));
+        }
+        return prefix + key;
+    };
+    
+    var params = {
+        'Bucket': config.s3_bucket, 
+        'Key': generateKey(config.s3_prefix, config.key_length)
+    };
+    s3.getSignedUrl('putObject', params, function(err, url) {
+        res.set('Content-type', 'application/json');
+        res.send(JSON.stringify({
+            'err': err,
+            'url': url
+        }));
+    });
 });
 
 app.use(router);
