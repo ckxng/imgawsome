@@ -1,5 +1,3 @@
-var http = require("http");
-var fs = require("fs");
 var aws = require('aws-sdk');
 var s3 = new aws.S3();
 var config = require('./config/config.js');
