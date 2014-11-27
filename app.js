@@ -6,28 +6,12 @@ var express = require('express');
 var app = express();
 var router = express.Router();
 var morgan = require('morgan');
-var exphbs = require('express-handlebars');
-
-/**
- * GET /static
- * serve static files (should eventually move/mirror this to S3)
- * end processing
- */
-app.use("/static", express.static(__dirname + "/static"));
 
 /**
  * MIDDLEWARE logger
  * log all the middle ware BELOW this point (not statics)
  */
 app.use(morgan('combined'));
-
-// configure the default view engine to use handlebars
-// "main.html" is the default layout
-app.engine('.html', exphbs({
-    defaultLayout: 'main',
-    extname: '.html'
-}));
-app.set('view engine', '.html');
 
 /**
  * PARAM :id
@@ -38,33 +22,6 @@ router.param('id', function(req, res, next, id) {
         req.params.id = id;
     }
     next();
-});
-
-/**
- * GET /
- * redirect to index page
- * end processing
- */
-router.get('/', function(req, res, next) {
-    res.redirect("/page/index");
-});
-
-/**
- * POST /
- * do nothing
- */
-router.post('/', function(req, res, next) {
-    //put information on the server. (use put for editing existing)
-    next();
-});
-
-/**
- * GET /page/:id
- * Get a templated page indicated by :id
- * end processing
- */
-router.get('/page/:id', function(req, res, next) {
-    res.render(req.params.id);
 });
 
 /**
@@ -105,6 +62,13 @@ router.get('/magic/puturl', function(req, res, next) {
 });
 
 app.use(router);
+
+/**
+ * GET / (default)
+ * serve static files (should eventually move/mirror this to S3)
+ * end processing
+ */
+app.use("/", express.static(__dirname + "/client"));
 
 // listen on the IP and PORT specified by the environment.
 // defaults to any interface, tcp port 3000
