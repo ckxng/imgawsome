@@ -23,7 +23,8 @@
   "dependencies": {
     "express": "4.10.x",
     "morgan": "1.4.x",
-    "aws-sdk": "2.0.x"
+    "aws-sdk": "2.0.x",
+    "crypto": "0.0.3"
   },
   "devDependencies": {}
 }
