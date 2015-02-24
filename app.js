@@ -71,13 +71,13 @@ router.get('/magic/formpostsig', function(req, res, next) {
          }]
     };
     var policyString = JSON.stringify(policy);
-    var policyBuffer = new Buffer(policyString, "utf-8");
+    var policyBuffer = new Buffer(policyString);
     var policyBase64 = policyBuffer.toString("base64");
     
     var crypto = require('crypto');
     var signature = 
         crypto.createHmac("sha1", process.env.AWS_SECRET_ACCESS_KEY)
-        .update(new Buffer(policyBase64, "utf-8"))
+        .update(new Buffer(policyBase64))
         .digest("base64");
     
     res.jsonp({
