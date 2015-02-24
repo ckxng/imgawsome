@@ -61,6 +61,59 @@ router.get('/magic/puturl', function(req, res, next) {
     });
 });
 
+/**
+ * GET /magic/formpostsig
+ * Get a signed policy that's valid for uploading ONE file within the next
+ * 15 minutes.  Returned as JSON, no formatting.
+ * {
+ *   err: undefined || Error(), // set to Error object on failure
+ *   policy: "base64", // set to policy on sucess, undefined on failure
+ *   signature: "base64" // set to signature on sucess, undefined on failure
+ * }
+ * end processing
+ */
+router.get('/magic/formpostsig', function(req, res, next) {
+    var generateKey = function(prefix, length) {
+        var key = "";
+        var pool = "abcdefghijkmnopqrstuvwxyz";
+        if(length--) {
+            key += pool.charAt(Math.floor(Math.random()*pool.length));
+        }
+        
+        pool = "abcdefghijkmnopqrstuvwxyz023456789";
+        while(length--) {
+            key += pool.charAt(Math.floor(Math.random() * pool.length));
+        }
+        return prefix + key;
+    };
+
+    var policy = {
+        'Statement': [{
+            'Resource': generateKey(config.s3_prefix, config.key_length),
+            'Condition': {
+                'DateLessThan': {
+                    'AWS:EpochTime': (new Date().valueOf())+(60*15)
+                },
+            }
+         }]
+    };
+    var policyString = JSON.stringify(policy);
+    var policyBuffer = new Buffer(policyString, "utf-8");
+    var policyBase64 = policyBuffer.toString("base64");
+    
+    var crypto = require('crypto');
+    var signature = 
+        crypto.createHmac("sha1", process.env.AWS_SECRET_ACCESS_KEY)
+        .update(new Buffer(policyBase64, "utf-8"))
+        .digest("base64");
+    
+    res.jsonp({
+        'policy': policy,
+        'base64': policyBase64,
+        'signature': signature
+    });
+});
+
 app.use(router);
 
 /**
