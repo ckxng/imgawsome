@@ -66,9 +66,9 @@ router.get('/magic/puturl', function(req, res, next) {
  * Get a signed policy that's valid for uploading ONE file within the next
  * 15 minutes.  Returned as JSON, no formatting.
  * {
- *   err: undefined || Error(), // set to Error object on failure
- *   policy: "base64", // set to policy on sucess, undefined on failure
- *   signature: "base64" // set to signature on sucess, undefined on failure
+ *   policy: JSON, // set to policy on sucess
+ *   base64: "base64", // set to base64 of policy on sucess
+ *   signature: "base64" // set to signature on sucess
  * }
  * end processing
  */
