@@ -10,7 +10,7 @@ var morgan = require('morgan');
 
 /**
  * MIDDLEWARE logger
- * log all the middle ware BELOW this point (not statics)
+ * log all the middle ware BELOW this point (everything)
  */
 app.use(morgan('combined'));
 
