@@ -1,6 +1,7 @@
 var aws = require('aws-sdk');
 var s3 = new aws.S3();
 var config = require('./config/config.js');
+var awsutil = require('./lib/awsutil.js');
 
 var express = require('express');
 var app = express();
@@ -35,23 +36,9 @@ router.param('id', function(req, res, next, id) {
  * end processing
  */
 router.get('/magic/puturl', function(req, res, next) {
-    var generateKey = function(prefix, length) {
-        var key = "";
-        var pool = "abcdefghijkmnopqrstuvwxyz";
-        if(length--) {
-            key += pool.charAt(Math.floor(Math.random()*pool.length));
-        }
-        
-        pool = "abcdefghijkmnopqrstuvwxyz023456789";
-        while(length--) {
-            key += pool.charAt(Math.floor(Math.random() * pool.length));
-        }
-        return prefix + key;
-    };
-    
     var params = {
         'Bucket': config.s3_bucket, 
-        'Key': generateKey(config.s3_prefix, config.key_length)
+        'Key': awsutil.generateKey(config.s3_prefix, config.key_length)
     };
     s3.getSignedUrl('putObject', params, function(err, url) {
         res.jsonp({
@@ -73,23 +60,9 @@ router.get('/magic/puturl', function(req, res, next) {
  * end processing
  */
 router.get('/magic/formpostsig', function(req, res, next) {
-    var generateKey = function(prefix, length) {
-        var key = "";
-        var pool = "abcdefghijkmnopqrstuvwxyz";
-        if(length--) {
-            key += pool.charAt(Math.floor(Math.random()*pool.length));
-        }
-        
-        pool = "abcdefghijkmnopqrstuvwxyz023456789";
-        while(length--) {
-            key += pool.charAt(Math.floor(Math.random() * pool.length));
-        }
-        return prefix + key;
-    };
-
     var policy = {
         'Statement': [{
-            'Resource': generateKey(config.s3_prefix, config.key_length),
+            'Resource': awsutil.generateKey(config.s3_prefix, config.key_length),
             'Condition': {
                 'DateLessThan': {
                     'AWS:EpochTime': (new Date().valueOf())+(60*15)
