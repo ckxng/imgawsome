@@ -17,6 +17,10 @@ testApp.config(
                 templateUrl: 'parts/file-detail.html',
                 controller: 'FileDetailCtrl'
             }).
+            when('/file_upload', {
+                templateUrl: 'parts/file-upload.html',
+                controller: 'FileUploadCtrl'
+            }).
             otherwise({
                 redirectTo: '/files'
             });

@@ -81,7 +81,10 @@ router.get('/magic/formpostsig', function(req, res, next) {
         .digest("base64");
     
     res.jsonp({
+        'accesskey': process.env.AWS_ACCESS_KEY_ID,
         'policy': policy,
+        'key': awsutil.generateKey(config.s3_prefix, config.key_length),
+        'bucket': config.s3_bucket,
         'base64': policyBase64,
         'signature': signature
     });
