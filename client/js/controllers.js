@@ -44,18 +44,23 @@ testAppControllers.controller('FileUploadCtrl', [
                     fd.append('acl', 'public-read'); 
                     fd.append('Content-Type', file.type);      
                     fd.append('AWSAccessKeyId', data.accesskey);
-                    fd.append('policy', data.policyBase64);
-                    fd.append('signature',data.signature);
+                    fd.append('policy', data.base64);
+                    fd.append('signature', data.signature);
                     fd.append("file",file);
                     
-                    $http.post("https://"+data.bucket+".s3.amazonaws.com", fd).
-                    
+                    $http.post("https://"+data.bucket+".s3.amazonaws.com", fd, {
+                            "headers": {
+                                "Content-type": undefined
+                            },
+                            "transformRequest": angular.identity
+                        }).
+                        
                         success(function(data, status, headers, config) {
                             $scope.status = "Upload complete!";
                         }).
                         
                         error(function(data, status, headers, config) {
-                            $scope.status = "Upload failed."
+                            $scope.status = "Upload failed.";
                             $scope.error = true;
                         });
                 }).
@@ -65,6 +70,6 @@ testAppControllers.controller('FileUploadCtrl', [
                     $scope.error = true;
                 });
         
-        }
+        };
     }
 ]);
