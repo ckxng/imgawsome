@@ -60,15 +60,16 @@ router.get('/magic/puturl', function(req, res, next) {
  * end processing
  */
 router.get('/magic/formpostsig', function(req, res, next) {
+    var key = awsutil.generateKey(config.s3_prefix, config.key_length);
     var policy = {
-        'Statement': [{
-            'Resource': awsutil.generateKey(config.s3_prefix, config.key_length),
-            'Condition': {
-                'DateLessThan': {
-                    'AWS:EpochTime': (new Date().valueOf())+(60*15)
-                },
-            }
-         }]
+        "expiration": new Date(new Date().getTime()+1000*60*15).toISOString(),
+        "conditions": [
+            {"bucket": config.s3_bucket},
+            {"key": key},
+            {"acl": "public-read"},
+            ["starts-with", "$Content-Type", ""],
+            ["content-length-range", 0, 524288000]
+        ]
     };
     var policyString = JSON.stringify(policy);
     var policyBuffer = new Buffer(policyString);
@@ -83,7 +84,7 @@ router.get('/magic/formpostsig', function(req, res, next) {
     res.jsonp({
         'accesskey': process.env.AWS_ACCESS_KEY_ID,
         'policy': policy,
-        'key': awsutil.generateKey(config.s3_prefix, config.key_length),
+        'key': key,
         'bucket': config.s3_bucket,
         'base64': policyBase64,
         'signature': signature
