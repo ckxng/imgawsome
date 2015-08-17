@@ -3,6 +3,19 @@ imgawsome
 
 AWS-backed image upload service
 
+Status
+------
+
+This project is ON-HOLD and NON-FUNCTIONAL.
+
+While I do have interest in working on this project, it is not a priority at this time.
+
+At the time this project went ON-HOLD, it had the following features:
+- generate time-limited AWS signatures
+- load an angular webapp, with limited ability to view a hard-coded list of images
+
+This software is missing key functionality.
+
 Architecture
 ------------
 
@@ -19,4 +32,4 @@ JavaScript, HTML5, Node.js, and AWS.
 Copying
 -------
 
-See LICENSE for details.
+imgawsome is licensed under the 2-CLAUSE BSD LICENSE.  See LICENSE for details.
